@@ -1,0 +1,122 @@
+vlans:
+  - id: "1"
+    name: "Management"
+    description: "Управление сетевыми устройствами"
+    interfaces: ["eth0"]
+    status: "active"
+  - id: "10"
+    name: "Production"
+    description: "Продакшн сеть"
+    interfaces: ["eth1", "eth2"]
+    status: "active"
+  - id: "20"
+    name: "Development"
+    description: "Разработка"
+    interfaces: ["eth3"]
+    status: "inactive"
+  - id: "30"
+    name: "Guest"
+    description: "Гостевая сеть"
+    interfaces: ["eth4"]
+    status: "active"
+
+vpn:
+  - name: "office-vpn-l2tp"
+    type: "L2TP"
+    server: "vpn.office.com"
+    port: 1194
+    username: "admin"
+    password: "secure_password"
+    enabled: true
+  - name: "remote-vpn-pptp"
+    type: "PPTP"
+    server: "vpn-remote.example.com"
+    port: 1723
+    username: "user"
+    password: "password123"
+    enabled: true
+  - name: "secure-vpn-sstp"
+    type: "SSTP"
+    server: "vpn-secure.example.com"
+    port: 443
+    username: "secure_user"
+    password: "secure_pass"
+    enabled: false
+  - name: "openvpn-main"
+    type: "OpenVPN"
+    server: "vpn-main.example.com"
+    port: 1194
+    username: "openvpn_user"
+    password: "openvpn_pass"
+    enabled: true
+
+firewall:
+  - id: "1"
+    direction: "Inbound"
+    action: "Allow"
+    protocol: "TCP"
+    port: "80"
+    source: "any"
+    dest: "192.168.1.0/24"
+  - id: "2"
+    direction: "Inbound"
+    action: "Allow"
+    protocol: "TCP"
+    port: "443"
+    source: "any"
+    dest: "192.168.1.0/24"
+  - id: "3"
+    direction: "Inbound"
+    action: "Allow"
+    protocol: "TCP"
+    port: "22"
+    source: "192.168.0.0/16"
+    dest: "192.168.1.0/24"
+  - id: "4"
+    direction: "Inbound"
+    action: "Deny"
+    protocol: "UDP"
+    port: "53"
+    source: "any"
+    dest: "any"
+  - id: "5"
+    direction: "Outbound"
+    action: "Allow"
+    protocol: "TCP"
+    port: "80"
+    source: "192.168.1.0/24"
+    dest: "any"
+  - id: "6"
+    direction: "Outbound"
+    action: "Allow"
+    protocol: "TCP"
+    port: "443"
+    source: "192.168.1.0/24"
+    dest: "any"
+
+qos:
+  - name: "high-priority"
+    interface: "eth0"
+    bandwidth: "100Mbps"
+    priority: 7
+  - name: "normal-priority"
+    interface: "eth1"
+    bandwidth: "50Mbps"
+    priority: 4
+  - name: "low-priority"
+    interface: "eth2"
+    bandwidth: "10Mbps"
+    priority: 1
+  - name: "video-streaming"
+    interface: "eth3"
+    bandwidth: "80Mbps"
+    priority: 6
+  - name: "voip"
+    interface: "eth4"
+    bandwidth: "20Mbps"
+    priority: 7
+
+monitoring:
+  enabled: true
+  interval: 5
+  logfile: "/var/log/network-monitor.log"

@@ -1,0 +1,62 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+*.cover
+
+# Dependency directories
+vendor/
+go.sum
+
+# Go workspace file
+go.work
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Build artifacts
+dist/
+build/
+bin/
+
+# Configuration files with sensitive data
+config/*.yml
+config/*.yaml
+!examples/network.yml
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Local development
+.env
+.env.local
+
+# Docker
+.docker/
+
+# Prometheus data
+prometheus_data/
+grafana_data/
